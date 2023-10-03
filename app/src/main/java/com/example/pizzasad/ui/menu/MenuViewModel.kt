@@ -1,24 +1,20 @@
-package com.example.pizzasad.activites
+package com.example.pizzasad.ui.menu
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.pizzasad.datasource.ServiceBuilder
 import com.example.pizzasad.interfaces.CategoriesInterface
-import com.example.pizzasad.interfaces.ProductsInterface
-import com.example.pizzasad.model.ApiResponseCategories
 import com.example.pizzasad.model.Categories
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class MainViewModel : ViewModel() {
+class MenuViewModel {
     private val _categoriesList = MutableLiveData<List<Categories>?>()
     //LiveData — это класс держателя данных, который позволяет использовать
     // данные в течение заданного жизненного цикла.
-    val categoriesList: LiveData<List<Categories>> = _categoriesList
+    val categoriesList: LiveData<List<Categories>?> = _categoriesList
     init {
         // вызывается автоматически при создании модели представления
         loadALlCategories()
@@ -47,5 +43,4 @@ class MainViewModel : ViewModel() {
             }
         })
     }
-
 }

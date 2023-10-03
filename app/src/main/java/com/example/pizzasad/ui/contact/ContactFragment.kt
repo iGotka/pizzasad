@@ -10,8 +10,6 @@ import com.example.pizzasad.R
 
 class ContactFragment : Fragment() {
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
