@@ -1,14 +1,16 @@
 package com.example.pizzasad.adapters
 
-import android.content.Context
-import android.icu.util.ULocale
+import CategoryItemCallback
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import java.util.Locale
+import com.example.pizzasad.model.Categories
+import com.example.pizzasad.databinding.ItemCategoryCardBinding
+import com.example.pizzasad.ui.menu.MenuFragment
 
-class CategoryListAdapter(context: Context) :
-    BaseListAdapter<Locale.Category, CategoryListAdapter.ViewHolder>(context,
+
+class CategoryListAdapter(context: MenuFragment) :
+    BaseListAdapter<Categories, CategoryListAdapter.ViewHolder>(context,
         CategoryItemCallback())  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     val binding = ItemCategoryCardBinding.inflate(inflater, parent, false)

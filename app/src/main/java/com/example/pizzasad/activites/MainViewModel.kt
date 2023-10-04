@@ -14,8 +14,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainViewModel : ViewModel() {
-    private val _categoriesList = MutableLiveData<List<Categories>?>()
+class MenuViewModel : ViewModel() {
+    private val _categoriesList = MutableLiveData<List<Categories>>()
     //LiveData — это класс держателя данных, который позволяет использовать
     // данные в течение заданного жизненного цикла.
     val categoriesList: LiveData<List<Categories>> = _categoriesList
@@ -28,24 +28,24 @@ class MainViewModel : ViewModel() {
             ServiceBuilder.buildService(CategoriesInterface::class.java)
         // загрузка данных с помощью retrofit
         retrofit.getAllCategories().enqueue(object :
-            Callback<Categories> {
+            Callback<ApiResponseCategories<Categories>> {
             override fun onResponse(
-                call: Call<Categories>,
-                response: Response<Categories>
+                call: Call<ApiResponseCategories<Categories>>,
+                response: Response<ApiResponseCategories<Categories>>
             ) {
                 try {
                     val responseBody = response.body()!!
                     // save data and post them to ui
-                    _categoriesList.value = responseBody.category
+                    _categoriesList.value = responseBody.categories
                 } catch (ex: java.lang.Exception) {
                     ex.printStackTrace()
                 }
+
             }
-            override fun onFailure(call: Call<Categories>, t:
-            Throwable) {
-                Log.e("Failed", "Api Failad" + t.message)
+
+            override fun onFailure(call: Call<ApiResponseCategories<Categories>>, t: Throwable) {
+                TODO("Not yet implemented")
             }
         })
     }
-
 }

@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pizzasad.R
 import com.example.pizzasad.activites.MainViewModel
+import com.example.pizzasad.adapters.CategoryListAdapter
 import com.example.pizzasad.databinding.ActivityMainBinding
 import com.example.pizzasad.model.Categories
 
@@ -18,7 +18,7 @@ import com.example.pizzasad.model.Categories
 class MenuFragment : Fragment() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private lateinit var categoriesAdapter: CategoriesListAdapter
+    private lateinit var categoriesAdapter: CategoryListAdapter
 
 
 
@@ -29,7 +29,7 @@ class MenuFragment : Fragment() {
 
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        categoriesAdapter = createCategoriesAdapter()
+        categoriesAdapter = createCategoryAdapter()
         categoriesAdapter.setOnItemClickListener {  ,item,->
             navigateToCategoryDetails(item)
         }
@@ -41,8 +41,8 @@ class MenuFragment : Fragment() {
         }
 
     }
-    private fun createCategoriesAdapter(): Any {
-        val adapter = CategoriesListAdapter(this)
+    private fun createCategoryAdapter():  CategoryListAdapter {
+        val adapter = CategoryListAdapter(this)
         // передаем существующие данные в адаптер
         adapter.submitList(viewModel.categoriesList.value)
         return adapter
